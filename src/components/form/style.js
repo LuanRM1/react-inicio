@@ -23,8 +23,9 @@ export const FormInput = styled.input`
   &::placeholder {
     color: #00f0dc; // Cor do texto do placeholder
     font-family: "Inter", sans-serif; // Estilo da fonte do placeholder
-    padding-left: 10px; // Distância do texto do placeholder até a borda
   }
+  color: #fff; // Cor do texto digitado
+  padding-left: 10px; // Distância do texto do placeholder até a borda
 `;
 
 export const FormButton = styled.button`
