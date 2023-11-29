@@ -2,9 +2,7 @@ import React, { useState, useEffect } from "react";
 import { FormConteiner, FormWrapper, FormInput, FormButton } from "./style";
 function Form(props) {
   const [numeroRegistro, setNumeroRegistro] = useState("");
-  function handleSubmit(event) {
-    console.log("Formulário enviado!");
-  }
+
   return (
     <FormConteiner>
       <FormWrapper>
@@ -14,6 +12,7 @@ function Form(props) {
           }}
           placeholder="Número de Registro"
         />
+        <small>{props.erro}</small>
         <FormButton
           onClick={(event) => {
             event.preventDefault();
