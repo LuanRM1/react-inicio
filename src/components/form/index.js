@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { FormConteiner, FormWrapper, FormInput, FormButton } from "./style";
+import {
+  FormConteiner,
+  FormWrapper,
+  FormInput,
+  FormButton,
+  ErrorMsg,
+} from "./style";
 function Form(props) {
   const [numeroRegistro, setNumeroRegistro] = useState("");
 
@@ -12,7 +18,7 @@ function Form(props) {
           }}
           placeholder="Número de Registro"
         />
-        <small>{props.erro}</small>
+        <ErrorMsg>{props.erro}</ErrorMsg>
         <FormButton
           onClick={(event) => {
             event.preventDefault();

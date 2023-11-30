@@ -49,3 +49,9 @@ export const FormButton = styled.button`
     box-shadow: 0 0 0 2px #001b34; // Adicionar um box-shadow para foco
   }
 `;
+
+export const ErrorMsg = styled.small`
+  color: #ff6f91;
+  font-family: "Inter", sans-serif;
+  padding-left: 10px;
+`;
