@@ -1,9 +1,12 @@
 import React from "react";
+import Sidebar from "../../components/sideBar";
+import Title from "../../components/title";
 
 function DashBoard({ props }) {
   return (
     <div>
-      <h1>DashBoard</h1>
+      <Title text={"lista de ativos"} />
+      <Sidebar />
     </div>
   );
 }
