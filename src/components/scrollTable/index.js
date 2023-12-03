@@ -3,11 +3,7 @@ import React from "react";
 import { ScrollableTableContainer } from "./style.js"; // Importando o estilo do arquivo style.js
 
 const TableScroll = () => {
-  return (
-    <ScrollableTableContainer>
-      {/* Sua tabela ou conteúdo aqui */}
-    </ScrollableTableContainer>
-  );
+  return <ScrollableTableContainer></ScrollableTableContainer>;
 };
 
 export default TableScroll;

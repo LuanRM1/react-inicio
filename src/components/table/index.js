@@ -31,7 +31,7 @@ const DataTable = ({ data }) => {
       <TableBody>
         {data.map((row, index) => (
           <TableRow key={index}>
-            <TableCell>{row.number}</TableCell>
+            <TableCell>{row.id}</TableCell>
             <TableCell>{row.assetName}</TableCell>
             <TableCell>{row.issueDate}</TableCell>
             <TableCell>

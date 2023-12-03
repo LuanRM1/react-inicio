@@ -9,6 +9,6 @@ export const PageConteiner = styled.div`
 
 export const Content = styled.main`
   width: 100%;
-  padding-left: 100px;
-  padding-top: 75px;
+  padding-left: 8%;
+  padding-top: 2%;
 `;
