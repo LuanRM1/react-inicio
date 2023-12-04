@@ -12,3 +12,16 @@ export const Content = styled.main`
   padding-left: 8%;
   padding-top: 2%;
 `;
+
+export const SearchBarContainer = styled.div`
+  display: flex;
+  justify-content: flex-end; // Alinha a barra de pesquisa à direita
+  height: 2%;
+  width: 83%;
+  padding-bottom: 2%;
+
+  @media (max-width: 768px) {
+    // Se você precisar de responsividade
+    justify-content: center; // Centraliza em telas menores
+  }
+`;

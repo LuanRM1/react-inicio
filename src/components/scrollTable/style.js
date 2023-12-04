@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const ScrollableTableContainer = styled.div`
   overflow-y: auto;
-  max-height: 45%; // ou a altura que você quer que a tabela tenha
+  max-height: 40%; // ou a altura que você quer que a tabela tenha
   box-sizing: border-box;
   width: 85%;
   padding: 1%;
