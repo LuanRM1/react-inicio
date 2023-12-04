@@ -12,7 +12,7 @@ const BrowserRouter = createBrowserRouter([
     element: <DashBoard />,
   },
   {
-    path: "/dashboard/:id",
+    path: "/dashboard",
     element: <Mapping />,
   },
 ]);
