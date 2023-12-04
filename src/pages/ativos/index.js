@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from "react";
 import Sidebar from "../../components/sideBar";
 import Title from "../../components/title";
-import { PageConteiner, Content, SearchBarContainer } from "./style.js";
+import {
+  PageConteiner,
+  Content,
+  SearchBarContainer,
+  FilterConteiner,
+} from "./style.js";
 import DataTable from "../../components/table";
 import { ScrollableTableContainer } from "../../components/scrollTable/style.js";
 import { entregaAtivos } from "../../services/get/entregaAtivos";
@@ -62,20 +67,18 @@ function DashBoard({ props }) {
 
   return (
     <PageConteiner>
-      <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600&italic&display=swap"
-        rel="stylesheet"
-      />
       <Sidebar />
       <Content>
         <Title text={"Lista de ativos"} />
-        <DropdownFilter onFilterSelect={handleFilterSelect} />
-        <SearchBarContainer>
-          <SearchBar
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-          />
-        </SearchBarContainer>
+        <FilterConteiner>
+          <DropdownFilter onFilterSelect={handleFilterSelect} />
+          <SearchBarContainer>
+            <SearchBar
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+          </SearchBarContainer>
+        </FilterConteiner>
         <ScrollableTableContainer>
           <DataTable data={filteredData} />
         </ScrollableTableContainer>

@@ -15,7 +15,8 @@ export const Content = styled.main`
 
 export const SearchBarContainer = styled.div`
   display: flex;
-  justify-content: flex-end; // Alinha a barra de pesquisa à direita
+  justify-content: flex-end;
+  align-items: center; // Alinha a barra de pesquisa à direita
   height: 2%;
   width: 83%;
   padding-bottom: 2%;
@@ -24,4 +25,9 @@ export const SearchBarContainer = styled.div`
     // Se você precisar de responsividade
     justify-content: center; // Centraliza em telas menores
   }
+`;
+
+export const FilterConteiner = styled.div`
+  display: flex;
+  width: 100%;
 `;

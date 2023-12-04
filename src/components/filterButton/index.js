@@ -1,9 +1,36 @@
 import React, { useState } from "react";
-import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from "./style";
+import {
+  Dropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+  StatusIndicator,
+} from "./style";
+
+const statusColors = [
+  {
+    color: "Todos",
+    code: "#000000",
+  },
+  {
+    color: "Verde",
+    code: "#4CAF50",
+  },
+  {
+    color: "Vermelho",
+    code: "#F44336",
+  },
+  {
+    color: "Amarelo",
+    code: "#FFEB3B",
+  },
+];
 
 const DropdownFilter = ({ onFilterSelect }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [selectedFilter, setSelectedFilter] = useState("Todos");
+  const [selectedFilter, setSelectedFilter] = useState(
+    <StatusIndicator color="black" />
+  );
 
   const toggleDropdown = () => {
     console.log("Dropdown toggle clicked!");
@@ -11,8 +38,8 @@ const DropdownFilter = ({ onFilterSelect }) => {
   };
 
   const handleFilterClick = (filterName) => {
-    setSelectedFilter(filterName);
-    onFilterSelect(filterName);
+    setSelectedFilter(<StatusIndicator color={filterName.code} />);
+    onFilterSelect(filterName.color);
     setDropdownOpen(false); // Isso fechará o menu dropdown após a seleção
   };
 
@@ -21,18 +48,16 @@ const DropdownFilter = ({ onFilterSelect }) => {
       <DropdownToggle onClick={toggleDropdown}>{selectedFilter}</DropdownToggle>
       {dropdownOpen && (
         <DropdownMenu>
-          <DropdownItem onClick={() => handleFilterClick("Todos")}>
-            Todos
-          </DropdownItem>
-          <DropdownItem onClick={() => handleFilterClick("Verde")}>
-            Verde
-          </DropdownItem>
-          <DropdownItem onClick={() => handleFilterClick("Vermelho")}>
-            Vermelho
-          </DropdownItem>
-          <DropdownItem onClick={() => handleFilterClick("Amarelo")}>
-            Amarelo
-          </DropdownItem>
+          {statusColors.map((color, index) => {
+            return (
+              <DropdownItem
+                key={index}
+                onClick={() => handleFilterClick(color)}
+              >
+                <StatusIndicator color={color.code} />
+              </DropdownItem>
+            );
+          })}
         </DropdownMenu>
       )}
     </Dropdown>

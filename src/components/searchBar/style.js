@@ -1,14 +1,14 @@
 import styled from "styled-components";
 
 export const SearchInput = styled.input`
+  max-height: 5px;
   padding: 10px;
-  margin: 20px 0;
+  margin: 7px 0 0 0;
   border-radius: 5px;
   border: 1px solid #ddd;
-  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
 
   &:focus {
     outline: none;
-    border-color: #4caf50;
+    border-color: #001b34;
   }
 `;

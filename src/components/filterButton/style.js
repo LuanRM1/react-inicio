@@ -6,13 +6,14 @@ export const Dropdown = styled.div`
 `;
 
 export const DropdownToggle = styled.button`
-  padding: 5px 10px;
-  font-size: 16px;
+  padding-right: 100%;
+  padding-top: 20%;
   cursor: pointer;
-  border: 1px solid #ccc;
+  border: 1px solid black;
   border-radius: 20px;
   background-color: #fff;
   position: relative; // Adicione esta linha
+  box-sizing: border-box;
 
   // Utilize os pseudo-elementos para criar a seta (caret)
   &:after {
@@ -30,9 +31,10 @@ export const DropdownToggle = styled.button`
 export const DropdownMenu = styled.div`
   position: absolute;
   background-color: #f9f9f9;
-  min-width: 160px;
+  min-width: 20%;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1000;
+  border-radius: 20px;
 
   // O DropdownMenu é exibido com base no estado dropdownOpen no componente
   ${Dropdown}:hover & {
@@ -48,4 +50,12 @@ export const DropdownItem = styled.div`
   &:hover {
     background-color: #f1f1f1;
   }
+`;
+
+export const StatusIndicator = styled.span`
+  height: 20px;
+  width: 20px;
+  background-color: ${(props) => props.color};
+  border-radius: 50%;
+  display: inline-block;
 `;
