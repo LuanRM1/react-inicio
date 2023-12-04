@@ -3,6 +3,11 @@ import styled from "styled-components";
 export const Table = styled.table`
   width: 100%;
   border-collapse: collapse;
+  a {
+    color: #001b34;
+    text-decoration: none;
+    display: block;
+  }
 `;
 
 export const TableHead = styled.thead`
@@ -16,6 +21,7 @@ export const TableBody = styled.tbody`
   /* Estilos para o corpo da tabela */
 `;
 export const TableRow = styled.tr`
+  cursor: pointer;
   &:not(:last-child) {
     border-bottom: 1px solid #ddd; // Para linhas entre as linhas da tabela
   }

@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
   Table,
   TableHead,
@@ -16,6 +18,11 @@ const statusColors = {
 };
 
 const DataTable = ({ data }) => {
+  // function HandleClick(id) {
+  //   const navigate = useNavigate();
+  //   navigate(`/`);
+  // }
+  const navigate = useNavigate();
   return (
     <Table>
       <TableHead>
@@ -30,7 +37,12 @@ const DataTable = ({ data }) => {
       </TableHead>
       <TableBody>
         {data.map((row, index) => (
-          <TableRow key={index}>
+          <TableRow
+            onClick={() => {
+              navigate(`/dashboard/${row.id}`);
+            }}
+            key={index}
+          >
             <TableCell>{row.id}</TableCell>
             <TableCell>{row.assetName}</TableCell>
             <TableCell>{row.issueDate}</TableCell>
