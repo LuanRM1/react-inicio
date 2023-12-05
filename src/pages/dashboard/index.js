@@ -1,20 +1,20 @@
 import React from 'react';
 import Map from '../../components/map'; // Importando da subpasta map
 import Sidebar from "../../components/sideBar";
-import historico from '../../components/tableHistorico';
-import {LeftContainer,RightContainer} from "./style.js";
+import Historico from '../../components/tableHistorico';
+import {LeftContainer,PageContainer,RightContainer} from "./style.js";
 const Mapping = () => {
 
   return (
-    <div>
+    <PageContainer>
     <LeftContainer>
       <Sidebar/>
       <Map />
     </LeftContainer>
     <RightContainer>
-      <historico/>
+      <Historico />
     </RightContainer>
-    </div>
+    </PageContainer>
   );
 };
 

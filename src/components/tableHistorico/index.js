@@ -1,5 +1,5 @@
 import React from "react";
-import {useParams} from "react-router-dom";
+// import {useParams} from "react-router-dom";
 import { entregaHistorico } from "../../services/post/tabelaHistorico";
 import {
     Table,
@@ -15,8 +15,8 @@ const statusColors = {
     red: "#F44336",
     yellow: "#FFEB3B",
   };
-const { id } = useParams();
-const historico = ({ data}) => {
+// const { id } = useParams();
+const Historico = () => {
   return (
     <Table>
       <TableHead>
@@ -29,20 +29,8 @@ const historico = ({ data}) => {
         </TableRow>
       </TableHead>
       <TableBody>
-        {data.map((row, index) => (
-          <TableRow
-            key={index}
-          >
-            <TableCell><StatusIndicator color={statusColors[row.status]} />
-            </TableCell>
-            <TableCell>{row.issueDate}</TableCell>
-            <TableCell>{row.deliveryDate}</TableCell>
-            <TableCell>{row.destination} </TableCell>
-            <TableCell>{row.reason}</TableCell>
-          </TableRow>
-        ))}
       </TableBody>
     </Table>
   );
 }
-export default historico;
+export default Historico;
