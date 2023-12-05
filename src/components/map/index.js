@@ -4,6 +4,7 @@ import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import icon from 'leaflet/dist/images/marker-icon.png';
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
+import { useParams } from 'react-router-dom';
 
 let DefaultIcon = L.icon({
     iconUrl: icon,
@@ -14,16 +15,15 @@ L.Marker.prototype.options.icon = DefaultIcon;
 
 const Map = () => {
   const [points, setPoints] = useState([]);
-
+  const {id} = useParams();
   useEffect(() => {
     // Função para chamar a API
     const fetchPoints = async () => {
       try {
         // Definindo o corpo da requisição com o ID desejado
         const requestBody = {
-          id: "1" // Substitua com o valor real do ID
+          id: id
         };
-
         // Realizando a chamada da API
         const response = await fetch('http://localhost:3001/ativos', {
           method: 'POST', // Método POST para enviar dados
@@ -48,7 +48,7 @@ const Map = () => {
 
     // Chama a função de busca quando o componente for montado
     fetchPoints();
-  }, []); // O array vazio assegura que a função só será chamada uma vez, equivalente ao componentDidMount
+  }, [id]); // O array vazio assegura que a função só será chamada uma vez, equivalente ao componentDidMount
 
   return (
     <MapContainer
