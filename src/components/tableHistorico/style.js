@@ -3,11 +3,7 @@ import styled from "styled-components";
 export const Table = styled.table`
   width: 100%;
   border-collapse: collapse;
-  a {
-    color: #001b34;
-    text-decoration: none;
-    display: block;
-  }
+  height: 50%;
 `;
 
 export const TableHead = styled.thead`
