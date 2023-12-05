@@ -1,12 +1,14 @@
 import React from 'react';
 import Map from '../../components/map'; // Importando da subpasta map
+import Sidebar from "../../components/sideBar";
+import {LeftContainer} from "./style.js";
 const Mapping = () => {
-  // Dados fictícios para as tabelas
 
   return (
-    <div>
+    <LeftContainer>
+      <Sidebar/>
       <Map />
-    </div>
+    </LeftContainer>
   );
 };
 
