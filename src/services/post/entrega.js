@@ -27,3 +27,4 @@ export async function fetchPoints (id,setPoints) {
       console.error('Erro ao obter dados da API:', error);
     }
   }
+  
