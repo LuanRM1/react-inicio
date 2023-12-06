@@ -7,8 +7,12 @@ export const LeftContainer = styled.div`
 `;
 export const RightContainer = styled.div`
   width: 100%;
-  display: flex;
+  display: table-cell;
+  vertical-align: middle;
+  justify-content: center;
+  
   padding-top: 5%;
+  padding-left: 10% 
 `;
 export const PageContainer = styled.div`
   width: 100%;
