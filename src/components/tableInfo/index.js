@@ -3,10 +3,8 @@ import { useParams } from "react-router-dom";
 import { entregaInfo } from "../../services/post/tabelaInfo";
 import {
     Table,
-    TableHead,
     TableBody,
     TableRow,
-    TableHeader,
     TableCell,
   } from "./style.js";
 
@@ -31,25 +29,41 @@ const Info = () => {
       fetchData();
     }, [id]);
     return (
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableHeader>Nome</TableHeader>
-              <TableHeader>Preço</TableHeader>
-              <TableHeader>Garantia</TableHeader>
-              <TableHeader>Manutenção</TableHeader>
-              <TableHeader>Vencimento</TableHeader>
-            </TableRow>
-          </TableHead>
+        <Table style={{"borderWidth":"1px", 'borderColor':"#aaaaaa", 'borderStyle':'solid'}}>
           <TableBody>
             {Array.isArray(infoData) &&
               infoData.map((row, index) => (
                 <TableRow key={index}>
-                  <TableCell>{row.nome}</TableCell>
-                  <TableCell>{row.preço}</TableCell>
-                  <TableCell>{row.garantia}</TableCell>
-                  <TableCell>{row.manutencao}</TableCell>
-                  <TableCell>{row.vencimento}</TableCell>
+                 <TableCell>Nome</TableCell>
+                 <TableCell>{row.nome}</TableCell>
+                </TableRow>
+              ))}
+              {Array.isArray(infoData) &&
+              infoData.map((row, index) => (
+                <TableRow key={index}>
+                 <TableCell>Preço</TableCell>
+                 <TableCell>{row.preço}</TableCell>
+                </TableRow>
+              ))}
+              {Array.isArray(infoData) &&
+              infoData.map((row, index) => (
+                <TableRow key={index}>
+                 <TableCell>Garantia</TableCell>
+                 <TableCell>{row.garantia}</TableCell>
+                </TableRow>
+              ))}
+              {Array.isArray(infoData) &&
+              infoData.map((row, index) => (
+                <TableRow key={index}>
+                 <TableCell>Manutenção</TableCell>
+                 <TableCell>{row.manutencao}</TableCell>
+                </TableRow>
+              ))}
+              {Array.isArray(infoData) &&
+              infoData.map((row, index) => (
+                <TableRow key={index}>
+                 <TableCell>Vencimento</TableCell>
+                 <TableCell>{row.vencimento}</TableCell>
                 </TableRow>
               ))}
           </TableBody>

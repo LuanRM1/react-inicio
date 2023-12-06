@@ -18,7 +18,7 @@ const Mapping = () => {
         </ScrollableTableContainer>
         <br></br>
         <br></br>
-        <br></br>
+        <br></br>   
         <ScrollableTableContainer>
           <Info />
         </ScrollableTableContainer>
