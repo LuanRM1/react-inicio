@@ -16,6 +16,7 @@ export const TableHead = styled.thead`
 export const TableBody = styled.tbody`
   /* Estilos para o corpo da tabela */
 `;
+
 export const TableRow = styled.tr`
   cursor: pointer;
   &:not(:last-child) {

@@ -9,16 +9,22 @@ export const LeftContainer = styled.div`
 `;
 export const RightContainer = styled.div`
   width: 100%;
-  display: table-cell;
-  vertical-align: middle;
-  justify-content: center;
-
-  padding-top: 7%;
-  padding-left: 10%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  padding: 5% 10% 5% 0;
 `;
+
 export const PageContainer = styled.div`
   width: 100%;
   max-height: 100vh;
   display: flex;
   align-content: center;
+`;
+
+export const HistConteiner = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-left: 15%;
 `;

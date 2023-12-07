@@ -1,28 +1,28 @@
 import React from "react";
-
 import { FiPlus, FiMenu, FiUser } from "react-icons/fi";
-
-import { SidebarContainer, SidebarItem, SidebarIcon } from "./style";
+import { SidebarContainer, SidebarButton, SidebarIcon } from "./style";
 
 const Sidebar = () => {
   return (
     <SidebarContainer>
-      <SidebarItem>
+      <SidebarButton>
         <SidebarIcon>
           <FiMenu />
         </SidebarIcon>
-      </SidebarItem>
-      <SidebarItem>
+      </SidebarButton>
+      <SidebarButton>
         <SidebarIcon>
           <FiPlus />
         </SidebarIcon>
-      </SidebarItem>
-      <SidebarItem>
+      </SidebarButton>
+      <SidebarButton>
+        <br></br>
+        <br></br>
         <SidebarIcon>
           <FiUser />
         </SidebarIcon>
-      </SidebarItem>
-      {/* Adicionar mais itens conforme necessário */}
+      </SidebarButton>
+      {/* Adicionar mais botões conforme necessário */}
     </SidebarContainer>
   );
 };

@@ -4,24 +4,32 @@ export const SidebarContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #001b34; // Substitua pelo código de cor real da sua barra lateral
+  background-color: #001b34;
   color: white;
-  min-height: 100vh; // Altura total da tela
+  min-height: 100vh;
   width: 3%;
   padding: 20px;
 `;
 
-export const SidebarItem = styled.div`
-  margin: 20px 0;
+export const SidebarButton = styled.button`
+  background-color: transparent;
+  border: none;
+  color: inherit;
+  font-size: 24px;
   cursor: pointer;
+  margin: 20px 0;
+  padding: 10px;
 
   &:hover {
-    // Estilo para hover, se necessário
-    color: #00f0dc; // Ou qualquer outra cor para o efeito hover
+    color: #00f0dc;
   }
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 `;
 
 export const SidebarIcon = styled.div`
-  font-size: 24px; // Ou o tamanho que desejar para os ícones
-  // Você pode adicionar mais estilos para os ícones aqui
+  // Estilos adicionais para o ícone, se necessário
 `;
