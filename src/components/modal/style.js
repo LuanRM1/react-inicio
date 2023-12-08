@@ -18,12 +18,12 @@ export const ModalContainer = styled.div`
   background-color: #fff;
   padding: 20px;
   border-radius: 10px;
-  width: 50%;
+  width: 40%;
   position: relative;
 `;
 
 export const Input = styled.input`
-  width: 100%;
+  width: 98%;
   padding: 10px;
   margin: 10px 0;
   border-radius: 5px;

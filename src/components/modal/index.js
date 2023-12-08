@@ -8,12 +8,18 @@ import {
   CloseButton,
   ModalTitle,
 } from "./style";
+import Button from "../../components/button";
 
-const ModalComponent = ({ showModal, setShowModal, fields, title }) => {
+const ModalComponent = ({
+  showModal,
+  setShowModal,
+  fields,
+  title,
+  buttonFunc,
+}) => {
   return (
     showModal && (
       <ModalBackdrop onClick={() => setShowModal(false)}>
-        console.log(showModal)
         <ModalContainer onClick={(e) => e.stopPropagation()}>
           <CloseButton onClick={() => setShowModal(false)}>×</CloseButton>
           {title && <ModalTitle>{title}</ModalTitle>}{" "}
@@ -29,6 +35,16 @@ const ModalComponent = ({ showModal, setShowModal, fields, title }) => {
               />
             </div>
           ))}
+          <Button
+            text={"Enviar"}
+            onClick={buttonFunc}
+            style={{
+              width: "102%",
+              "background-color": "#008277",
+              color: "#fff",
+              height: "40px",
+            }}
+          />
         </ModalContainer>
       </ModalBackdrop>
     )

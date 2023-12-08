@@ -28,3 +28,14 @@ export const HistConteiner = styled.div`
   justify-content: space-between;
   margin-left: 15%;
 `;
+export const InfoConteiner = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-left: 15%;
+  margin-top: 10%;
+`;
+
+export const ModalForm = styled.div`
+  width: 100%;
+`;

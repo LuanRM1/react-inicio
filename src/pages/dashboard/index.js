@@ -6,19 +6,23 @@ import Info from "../../components/tableInfo";
 import { ScrollableTableContainer } from "../../components/scrollTable/style.js";
 import Title from "../../components/title";
 import {
-  ButtonContainer,
   LeftContainer,
   PageContainer,
   RightContainer,
   HistConteiner,
+  ModalForm,
+  infoConteiner,
+  InfoConteiner,
 } from "./style.js";
 import ModalComponent from "../../components/modal";
 import Button from "../../components/button";
 import SubTitle from "../../components/subTitle/index.js";
+
 const Mapping = () => {
   const [showModal, setShowModal] = useState(false);
-  var value = null;
-  // Definindo os campos que serão passados para o ModalComponent
+  const [activeFormFields, setActiveFormFields] = useState([]);
+  const [modalTitle, setModalTitle] = useState("");
+
   const formFields = [
     {
       name: "Cidade de destino",
@@ -46,6 +50,7 @@ const Mapping = () => {
     },
     // Adicione mais campos conforme necessário
   ];
+
   const infoFields = [
     {
       name: "Nome",
@@ -66,10 +71,10 @@ const Mapping = () => {
       placeholder: "Garantia",
     },
     {
-      name: "Manutenção",
-      label: "Manutenção",
+      name: "Ultima Manutenção",
+      label: "Ultima Manutenção",
       type: "text",
-      placeholder: "Manutenção",
+      placeholder: "Ultima Manutenção",
     },
     {
       name: "Vencimento",
@@ -78,7 +83,24 @@ const Mapping = () => {
       placeholder: "Vencimento",
     },
   ];
-  const fields = [formFields, infoFields];
+
+  function buttonFunc() {
+    // Lógica para enviar os dados do formulário
+    console.log("Dados do formulário enviados");
+  }
+
+  function handleAddEntregaClick() {
+    setActiveFormFields(formFields);
+    setModalTitle("Informações de Entrega"); // Atualiza o título para entrega
+    setShowModal(true);
+  }
+
+  function handleAddInfoClick() {
+    setActiveFormFields(infoFields);
+    setModalTitle("Informações Adicionais"); // Atualiza o título para informações adicionais
+    setShowModal(true);
+  }
+
   return (
     <PageContainer>
       <Sidebar />
@@ -87,30 +109,50 @@ const Mapping = () => {
         <Map />
       </LeftContainer>
       <RightContainer>
-        <ModalComponent
-          showModal={showModal}
-          setShowModal={setShowModal}
-          fields={fieldLi[value]}
-          title="Informações de Entrega"
-        />
+        <ModalForm>
+          <ModalComponent
+            showModal={showModal}
+            setShowModal={setShowModal}
+            fields={activeFormFields}
+            title={modalTitle} // Usa o estado modalTitle para o título
+            buttonFunc={buttonFunc}
+          />
+        </ModalForm>
         <HistConteiner>
-          <SubTitle style={{ "font-size": "12px" }} text={"Histórico"} />
+          <SubTitle style={{ fontSize: "12px" }} text={"Histórico do ativo"} />
           <Button
             text={"add entrega"}
-            onClick={() => setShowModal(true)}
+            onClick={handleAddEntregaClick}
             style={{
               width: "20%",
               height: "20px",
-              "margin-bottom": 0,
-              "margin-top": "7px",
-              "font-size": "12px",
+              marginBottom: 0,
+              marginTop: "7px",
+              fontSize: "12px",
             }}
           />
         </HistConteiner>
         <ScrollableTableContainer>
           <Historico />
         </ScrollableTableContainer>
-        <ScrollableTableContainer style={{ "overflow-y": "hidden" }}>
+        <InfoConteiner>
+          <SubTitle
+            style={{ fontSize: "12px" }}
+            text={"Informações do Ativo"}
+          />
+          <Button
+            text={"add info"}
+            onClick={handleAddInfoClick}
+            style={{
+              width: "20%",
+              height: "20px",
+              marginBottom: 0,
+              marginTop: "7px",
+              fontSize: "12px",
+            }}
+          />
+        </InfoConteiner>
+        <ScrollableTableContainer style={{ overflowY: "hidden" }}>
           <Info />
         </ScrollableTableContainer>
       </RightContainer>

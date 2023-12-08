@@ -16,8 +16,6 @@ const Sidebar = () => {
         </SidebarIcon>
       </SidebarButton>
       <SidebarButton>
-        <br></br>
-        <br></br>
         <SidebarIcon>
           <FiUser />
         </SidebarIcon>
