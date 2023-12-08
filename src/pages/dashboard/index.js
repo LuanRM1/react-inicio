@@ -17,7 +17,7 @@ import Button from "../../components/button";
 import SubTitle from "../../components/subTitle/index.js";
 const Mapping = () => {
   const [showModal, setShowModal] = useState(false);
-  var value = null;
+  const [value, setValue] = useState(null);
   // Definindo os campos que serão passados para o ModalComponent
   const formFields = [
     {
@@ -78,7 +78,19 @@ const Mapping = () => {
       placeholder: "Vencimento",
     },
   ];
-  const fields = [formFields, infoFields];
+  const hist = {
+    form: formFields,
+    endpoint: "/entrega"
+  }
+  const info = {
+    form: infoFields,
+    endpoint: "/info"
+  }
+  const fieldList = [hist,info];
+  const handleHistButtonClick = () => {
+    setShowModal(true);
+    setValue(0);
+  };
   return (
     <PageContainer>
       <Sidebar />
@@ -90,14 +102,15 @@ const Mapping = () => {
         <ModalComponent
           showModal={showModal}
           setShowModal={setShowModal}
-          fields={fieldLi[value]}
+          fields={fieldList[value].form}
           title="Informações de Entrega"
         />
         <HistConteiner>
           <SubTitle style={{ "font-size": "12px" }} text={"Histórico"} />
           <Button
             text={"add entrega"}
-            onClick={() => setShowModal(true)}
+            // onClick={() => setShowModal(true)}
+            onClick={handleHistButtonClick}
             style={{
               width: "20%",
               height: "20px",
