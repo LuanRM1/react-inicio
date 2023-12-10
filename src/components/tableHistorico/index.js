@@ -51,17 +51,20 @@ const Historico = () => {
       </TableHead>
       <TableBody>
         {Array.isArray(historicoData) &&
-          historicoData.map((row, index) => (
-            <TableRow key={index}>
-              <TableCell>
-                <StatusIndicator color={statusColors[row.status]} />
-              </TableCell>
-              <TableCell>{row.issueDate}</TableCell>
-              <TableCell>{row.deliveryDate}</TableCell>
-              <TableCell>{row.destination}</TableCell>
-              <TableCell>{row.reason}</TableCell>
-            </TableRow>
-          ))}
+          historicoData
+            .slice() // Cria uma cópia para não modificar o estado original
+            .reverse() // Inverte a ordem do array
+            .map((row, index) => (
+              <TableRow key={index}>
+                <TableCell>
+                  <StatusIndicator color={statusColors[row.status]} />
+                </TableCell>
+                <TableCell>{row.issueDate}</TableCell>
+                <TableCell>{row.deliveryDate}</TableCell>
+                <TableCell>{row.destination}</TableCell>
+                <TableCell>{row.reason}</TableCell>
+              </TableRow>
+            ))}
       </TableBody>
     </Table>
   );

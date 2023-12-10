@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Map from "../../components/map"; // Importando da subpasta map
 import Historico from "../../components/tableHistorico";
 import Sidebar from "../../components/sideBar";
@@ -6,6 +6,7 @@ import Info from "../../components/tableInfo";
 import { ScrollableTableContainer } from "../../components/scrollTable/style.js";
 import { useParams } from "react-router-dom";
 import { UpdateInfo } from "../../services/put/attInfo";
+import { postDeliveryHistory } from "../../services/post/addEntrega.js";
 import Title from "../../components/title";
 import {
   LeftContainer,
@@ -25,27 +26,29 @@ const Mapping = () => {
   const [modalTitle, setModalTitle] = useState("");
   const { id } = useParams();
 
+  const [isEntrega, setIsEntrega] = useState(false);
+
   const formFields = [
     {
-      name: "Cidade de destino",
+      name: "destinationCity",
       label: "Cidade de destino",
       type: "text",
       placeholder: "Cidade de destino",
     },
     {
-      name: "Data de emissão",
+      name: "issueDate",
       label: "Data de emissão",
       type: "text",
       placeholder: "Data de emissão",
     },
     {
-      name: "Data de entrega",
+      name: "deliveryDate",
       label: "Data de entrega",
       type: "text",
       placeholder: "Data de entrega",
     },
     {
-      name: "Motivo",
+      name: "reason",
       label: "Motivo",
       type: "text",
       placeholder: "Motivo",
@@ -89,20 +92,28 @@ const Mapping = () => {
   function handleAddEntregaClick() {
     setActiveFormFields(formFields);
     setModalTitle("Informações de Entrega");
-    setShowModal(true);
+    setIsEntrega(true); // Defina como true quando for o formulário de entrega
   }
 
   function handleAddInfoClick() {
     setActiveFormFields(infoFields);
     setModalTitle("Informações Adicionais");
-    setShowModal(true);
+    setIsEntrega(false); // Defina como false quando for o formulário de informações
   }
+
+  useEffect(() => {
+    if (activeFormFields.length > 0) {
+      setShowModal(true);
+    }
+  }, [activeFormFields]);
 
   function handleEntregaSubmit(formData) {
     // Lógica para enviar dados de entrega
-    // Supondo que você tenha um endpoint separado para entrega
-    console.log("Dados de entrega:", formData);
-    // Aqui você chamaria a função correspondente do service
+    postDeliveryHistory(id, formData)
+      .then((response) =>
+        console.log("Entrega adicionada com sucesso:", response)
+      )
+      .catch((error) => console.error("Erro ao adicionar entrega:", error));
   }
 
   function handleInfoSubmit(formData) {
@@ -125,12 +136,8 @@ const Mapping = () => {
             showModal={showModal}
             setShowModal={setShowModal}
             fields={activeFormFields}
-            title={modalTitle} // Usa o estado modalTitle para o título
-            onSubmit={
-              activeFormFields === formFields
-                ? handleEntregaSubmit
-                : handleInfoSubmit
-            }
+            title={modalTitle}
+            onSubmit={isEntrega ? handleEntregaSubmit : handleInfoSubmit}
           />
         </ModalForm>
         <HistConteiner>
