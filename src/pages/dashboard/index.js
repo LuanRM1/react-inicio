@@ -4,6 +4,8 @@ import Historico from "../../components/tableHistorico";
 import Sidebar from "../../components/sideBar";
 import Info from "../../components/tableInfo";
 import { ScrollableTableContainer } from "../../components/scrollTable/style.js";
+import { useParams } from "react-router-dom";
+import { UpdateInfo } from "../../services/put/attInfo";
 import Title from "../../components/title";
 import {
   LeftContainer,
@@ -11,7 +13,6 @@ import {
   RightContainer,
   HistConteiner,
   ModalForm,
-  infoConteiner,
   InfoConteiner,
 } from "./style.js";
 import ModalComponent from "../../components/modal";
@@ -22,6 +23,7 @@ const Mapping = () => {
   const [showModal, setShowModal] = useState(false);
   const [activeFormFields, setActiveFormFields] = useState([]);
   const [modalTitle, setModalTitle] = useState("");
+  const { id } = useParams();
 
   const formFields = [
     {
@@ -53,52 +55,61 @@ const Mapping = () => {
 
   const infoFields = [
     {
-      name: "Nome",
+      name: "name",
       label: "Nome",
       type: "text",
       placeholder: "Nome",
     },
     {
-      name: "Preço",
+      name: "price",
       label: "Preço",
       type: "text",
       placeholder: "Preço",
     },
     {
-      name: "Garantia",
+      name: "warranty",
       label: "Garantia",
       type: "text",
       placeholder: "Garantia",
     },
     {
-      name: "Ultima Manutenção",
+      name: "maintenance",
       label: "Ultima Manutenção",
       type: "text",
       placeholder: "Ultima Manutenção",
     },
     {
-      name: "Vencimento",
+      name: "expiration",
       label: "Vencimento",
       type: "text",
       placeholder: "Vencimento",
     },
   ];
 
-  function buttonFunc() {
-    // Lógica para enviar os dados do formulário
-    console.log("Dados do formulário enviados");
-  }
-
   function handleAddEntregaClick() {
     setActiveFormFields(formFields);
-    setModalTitle("Informações de Entrega"); // Atualiza o título para entrega
+    setModalTitle("Informações de Entrega");
     setShowModal(true);
   }
 
   function handleAddInfoClick() {
     setActiveFormFields(infoFields);
-    setModalTitle("Informações Adicionais"); // Atualiza o título para informações adicionais
+    setModalTitle("Informações Adicionais");
     setShowModal(true);
+  }
+
+  function handleEntregaSubmit(formData) {
+    // Lógica para enviar dados de entrega
+    // Supondo que você tenha um endpoint separado para entrega
+    console.log("Dados de entrega:", formData);
+    // Aqui você chamaria a função correspondente do service
+  }
+
+  function handleInfoSubmit(formData) {
+    // Lógica para enviar informações adicionais
+    UpdateInfo(id, formData)
+      .then((response) => console.log("Resposta:", response))
+      .catch((error) => console.error("Erro:", error));
   }
 
   return (
@@ -115,7 +126,11 @@ const Mapping = () => {
             setShowModal={setShowModal}
             fields={activeFormFields}
             title={modalTitle} // Usa o estado modalTitle para o título
-            buttonFunc={buttonFunc}
+            onSubmit={
+              activeFormFields === formFields
+                ? handleEntregaSubmit
+                : handleInfoSubmit
+            }
           />
         </ModalForm>
         <HistConteiner>

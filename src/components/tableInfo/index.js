@@ -36,35 +36,35 @@ const Info = () => {
           infoData.map((row, index) => (
             <TableRow key={index}>
               <TableCell>Nome</TableCell>
-              <TableCell>{row.nome}</TableCell>
+              <TableCell>{row.name}</TableCell>
             </TableRow>
           ))}
         {Array.isArray(infoData) &&
           infoData.map((row, index) => (
             <TableRow key={index}>
               <TableCell>Preço</TableCell>
-              <TableCell>{row.preço}</TableCell>
+              <TableCell>{row.price}</TableCell>
             </TableRow>
           ))}
         {Array.isArray(infoData) &&
           infoData.map((row, index) => (
             <TableRow key={index}>
               <TableCell>Garantia</TableCell>
-              <TableCell>{row.garantia}</TableCell>
+              <TableCell>{row.warranty}</TableCell>
             </TableRow>
           ))}
         {Array.isArray(infoData) &&
           infoData.map((row, index) => (
             <TableRow key={index}>
               <TableCell>Ultima Manutenção</TableCell>
-              <TableCell>{row.manutencao}</TableCell>
+              <TableCell>{row.maintenance}</TableCell>
             </TableRow>
           ))}
         {Array.isArray(infoData) &&
           infoData.map((row, index) => (
             <TableRow key={index}>
               <TableCell>Vencimento</TableCell>
-              <TableCell>{row.vencimento}</TableCell>
+              <TableCell>{row.expiration}</TableCell>
             </TableRow>
           ))}
       </TableBody>
