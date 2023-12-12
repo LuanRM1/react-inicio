@@ -12,11 +12,68 @@ import { ScrollableTableContainer } from "../../components/scrollTable/style.js"
 import { entregaAtivos } from "../../services/get/entregaAtivos";
 import SearchBar from "../../components/searchBar";
 import DropdownFilter from "../../components/filterButton";
-
+import ModalComponent from "../../components/modal";
+import Button from "../../components/button";
+import { postDeliveryHistory } from "../../services/post/addEntrega.js";
 function DashBoard({ props }) {
+  const [showModal, setShowModal] = useState(false);
+
+  // Função para abrir o modal
+  const handleOpenModal = () => setShowModal(true);
+  const formFields = [
+    {
+      name: "id",
+      label: "id",
+      type: "text",
+      placeholder: "Indentificador",
+    },
+    {
+      name: "assetName",
+      label: "Nome do ativo",
+      type: "text",
+      placeholder: "Nome do ativo",
+    },
+    {
+      name: "issueDate",
+      label: "Data de emissão",
+      type: "text",
+      placeholder: "Data de emissão",
+    },
+    {
+      name: "destination",
+      label: "Cidade de destino",
+      type: "text",
+      placeholder: "Cidade de destino",
+    },
+    {
+      name: "deliveryDate",
+      label: "Data de entrega",
+      type: "text",
+      placeholder: "Data de entrega",
+    },
+  ];
+
   const [data, setData] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredData, setFilteredData] = useState([]);
+
+  const handleModalSubmit = async (formData) => {
+    try {
+      // Cria um novo objeto com os dados do formulário e define o status para 'red'
+      const dataToSend = { ...formData, status: "red" };
+      console.log(dataToSend);
+
+      // Envia os dados para o servidor
+      const response = await postDeliveryHistory(dataToSend);
+      console.log(response); // Faça algo com a resposta, como atualizar a lista de ativos
+
+      // Fecha o modal após o envio bem-sucedido
+      setShowModal(false);
+    } catch (error) {
+      console.error("Erro ao enviar o formulário:", error);
+      // Aqui você pode mostrar uma mensagem de erro para o usuário
+    }
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -67,12 +124,24 @@ function DashBoard({ props }) {
 
   return (
     <PageConteiner>
+      <ModalComponent
+        showModal={showModal}
+        setShowModal={setShowModal}
+        fields={formFields}
+        title={"Adicionar Ativo"}
+        onSubmit={handleModalSubmit} // Passando a função de envio para o modal
+      />
+
       <Sidebar />
       <Content>
         <Title text={"Lista de ativos"} />
         <FilterConteiner>
           <DropdownFilter onFilterSelect={handleFilterSelect} />
           <SearchBarContainer>
+            <Button
+              text="Adicionar Entrega"
+              onClick={() => setShowModal(true)}
+            />
             <SearchBar
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}

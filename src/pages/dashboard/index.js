@@ -25,12 +25,11 @@ const Mapping = () => {
   const [activeFormFields, setActiveFormFields] = useState([]);
   const [modalTitle, setModalTitle] = useState("");
   const { id } = useParams();
-
   const [isEntrega, setIsEntrega] = useState(false);
 
   const formFields = [
     {
-      name: "destinationCity",
+      name: "destination",
       label: "Cidade de destino",
       type: "text",
       placeholder: "Cidade de destino",
@@ -53,12 +52,11 @@ const Mapping = () => {
       type: "text",
       placeholder: "Motivo",
     },
-    // Adicione mais campos conforme necessário
   ];
 
   const infoFields = [
     {
-      name: "name",
+      name: "assetName",
       label: "Nome",
       type: "text",
       placeholder: "Nome",
@@ -108,7 +106,6 @@ const Mapping = () => {
   }, [activeFormFields]);
 
   function handleEntregaSubmit(formData) {
-    // Lógica para enviar dados de entrega
     postDeliveryHistory(id, formData)
       .then((response) =>
         console.log("Entrega adicionada com sucesso:", response)

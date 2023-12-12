@@ -36,7 +36,7 @@ const Info = () => {
           infoData.map((row, index) => (
             <TableRow key={index}>
               <TableCell>Nome</TableCell>
-              <TableCell>{row.name}</TableCell>
+              <TableCell>{row.assetName}</TableCell>
             </TableRow>
           ))}
         {Array.isArray(infoData) &&

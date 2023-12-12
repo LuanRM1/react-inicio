@@ -2,15 +2,14 @@ import axios from "axios";
 import { API_URL } from "../../constants/ApiUrl";
 
 export async function postDeliveryHistory(id, formData) {
+  // Adiciona o id ao objeto formData
+  const dataWithId = { ...formData, status: "red", id };
+
   try {
-    const response = await axios.post(
-      `${API_URL}/delivery-history/${id}`,
-      formData
-    );
+    const response = await axios.post(`${API_URL}/addEntrega`, dataWithId);
     return response.data;
   } catch (error) {
-    // Trate o erro como achar melhor
     console.error("Erro ao postar o histórico de entrega:", error);
-    throw error;
+    throw error; // Relança o erro após o log
   }
 }

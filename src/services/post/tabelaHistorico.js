@@ -6,6 +6,6 @@ export async function entregaHistorico(id) {
   const body = {
     id: id,
   };
-  const response = await axios.post(`${API_URL}/entrega`, body);
+  const response = await axios.post(`${API_URL}/hist`, body);
   return response.data;
 }
