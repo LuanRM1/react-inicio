@@ -12,7 +12,7 @@ import { ScrollableTableContainer } from "../../components/scrollTable/style.js"
 import { entregaAtivos } from "../../services/get/entregaAtivos";
 import SearchBar from "../../components/searchBar";
 import DropdownFilter from "../../components/filterButton";
-import ModalComponent from "../../components/modal";
+import ModalComponent from "../../components/twoFormModal";
 import Button from "../../components/button";
 import { postDeliveryHistory } from "../../services/post/addEntrega.js";
 function DashBoard({ props }) {
@@ -82,7 +82,71 @@ function DashBoard({ props }) {
       placeholder: "manutenção",
     },
   ];
-
+  const formFieldsC1 = [
+    {
+      name: "id",
+      label: "Identificador",
+      type: "text",
+      placeholder: "Indentificador",
+    },
+    {
+      name: "assetName",
+      label: "Nome do ativo",
+      type: "text",
+      placeholder: "Nome do ativo",
+    },
+    {
+      name: "issueDate",
+      label: "Data de emissão",
+      type: "text",
+      placeholder: "Data de emissão",
+    },
+    {
+      name: "destination",
+      label: "Cidade de destino",
+      type: "text",
+      placeholder: "Cidade de destino",
+    },
+    {
+      name: "deliveryDate",
+      label: "Data de entrega",
+      type: "text",
+      placeholder: "Data de entrega",
+    },
+  ];
+  
+  const formFieldsC2 = [
+    {
+      name: "assetName",
+      label: "Nome",
+      type: "text",
+      placeholder: "Nome do ativo",
+    },
+    {
+      name: "price",
+      label: "Preço",
+      type: "text",
+      placeholder: "Preço",
+    },
+    {
+      name: "warranty",
+      label: "Garantia",
+      type: "text",
+      placeholder: "Garantia",
+    },
+    {
+      name: "expiration",
+      label: "Vencimento",
+      type: "text",
+      placeholder: "Vencimento",
+    },
+    {
+      name: "maintenance",
+      label: "manutenção",
+      type: "text",
+      placeholder: "manutenção",
+    },
+  ];
   const [data, setData] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredData, setFilteredData] = useState([]);
@@ -157,11 +221,11 @@ function DashBoard({ props }) {
       <ModalComponent
         showModal={showModal}
         setShowModal={setShowModal}
-        fields={formFields}
+        fieldsC1={formFieldsC1}
+        fieldsC2={formFieldsC2}
         title={"Adicionar Ativo"}
-        onSubmit={handleModalSubmit} // Passando a função de envio para o modal
+        onSubmit={handleModalSubmit}
       />
-
       <Sidebar />
       <Content>
         <Title text={"Lista de ativos"} />

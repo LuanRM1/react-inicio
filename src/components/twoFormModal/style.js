@@ -51,3 +51,13 @@ export const ModalTitle = styled.h2`
   text-align: center;
   // Adicione outros estilos conforme necessário
 `;
+export const FormSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 48%; // Aproximadamente metade da largura para caber dois lado a lado
+  margin-right: 2%; // Espaço entre as seções de formulário, ajuste conforme necessário
+
+  &:last-child {
+    margin-right: 0; // Para garantir que o segundo FormSection não tenha margem à direita
+  }
+`;
