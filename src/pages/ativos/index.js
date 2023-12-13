@@ -51,6 +51,36 @@ function DashBoard({ props }) {
       type: "text",
       placeholder: "Data de entrega",
     },
+    {
+      name: "assetName",
+      label: "Nome",
+      type: "text",
+      placeholder: "Nome do ativo",
+    },
+    {
+      name: "price",
+      label: "Preço",
+      type: "text",
+      placeholder: "Preço",
+    },
+    {
+      name: "waranty",
+      label: "Garantia",
+      type: "text",
+      placeholder: "Garantia",
+    },
+    {
+      name: "expiration",
+      label: "Vencimento",
+      type: "text",
+      placeholder: "Vencimento",
+    },
+    {
+      name: "maintenance",
+      label: "manutenção",
+      type: "text",
+      placeholder: "manutenção",
+    },
   ];
 
   const [data, setData] = useState([]);
