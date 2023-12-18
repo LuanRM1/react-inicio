@@ -15,73 +15,10 @@ import DropdownFilter from "../../components/filterButton";
 import ModalComponent from "../../components/twoFormModal";
 import Button from "../../components/button";
 import { postDeliveryHistory } from "../../services/post/addEntrega.js";
+import { addAtivo } from "../../services/post/addAtivo.js";
 function DashBoard({ props }) {
   const [showModal, setShowModal] = useState(false);
 
-  // Função para abrir o modal
-  const handleOpenModal = () => setShowModal(true);
-  const formFields = [
-    {
-      name: "id",
-      label: "id",
-      type: "text",
-      placeholder: "Indentificador",
-    },
-    {
-      name: "assetName",
-      label: "Nome do ativo",
-      type: "text",
-      placeholder: "Nome do ativo",
-    },
-    {
-      name: "issueDate",
-      label: "Data de emissão",
-      type: "text",
-      placeholder: "Data de emissão",
-    },
-    {
-      name: "destination",
-      label: "Cidade de destino",
-      type: "text",
-      placeholder: "Cidade de destino",
-    },
-    {
-      name: "deliveryDate",
-      label: "Data de entrega",
-      type: "text",
-      placeholder: "Data de entrega",
-    },
-    {
-      name: "assetName",
-      label: "Nome",
-      type: "text",
-      placeholder: "Nome do ativo",
-    },
-    {
-      name: "price",
-      label: "Preço",
-      type: "text",
-      placeholder: "Preço",
-    },
-    {
-      name: "waranty",
-      label: "Garantia",
-      type: "text",
-      placeholder: "Garantia",
-    },
-    {
-      name: "expiration",
-      label: "Vencimento",
-      type: "text",
-      placeholder: "Vencimento",
-    },
-    {
-      name: "maintenance",
-      label: "manutenção",
-      type: "text",
-      placeholder: "manutenção",
-    },
-  ];
   const formFieldsC1 = [
     {
       name: "id",
@@ -90,12 +27,6 @@ function DashBoard({ props }) {
       placeholder: "Indentificador",
     },
     {
-      name: "assetName",
-      label: "Nome do ativo",
-      type: "text",
-      placeholder: "Nome do ativo",
-    },
-    {
       name: "issueDate",
       label: "Data de emissão",
       type: "text",
@@ -114,7 +45,7 @@ function DashBoard({ props }) {
       placeholder: "Data de entrega",
     },
   ];
-  
+
   const formFieldsC2 = [
     {
       name: "assetName",
@@ -140,32 +71,44 @@ function DashBoard({ props }) {
       type: "text",
       placeholder: "Vencimento",
     },
-    {
-      name: "maintenance",
-      label: "manutenção",
-      type: "text",
-      placeholder: "manutenção",
-    },
   ];
   const [data, setData] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredData, setFilteredData] = useState([]);
 
-  const handleModalSubmit = async (formData) => {
+  const handleSubmit = async (formDataC1) => {
     try {
-      // Cria um novo objeto com os dados do formulário e define o status para 'red'
-      const dataToSend = { ...formData, status: "red" };
-      console.log(dataToSend);
+      // Dados para o endpoint /addAtivo
+      const ativoData = {
+        id: formDataC1.id,
+        assetName: formDataC1.assetName,
+        price: formDataC1.price,
+        warranty: formDataC1.warranty,
+        expiration: formDataC1.expiration,
+      };
 
-      // Envia os dados para o servidor
-      const response = await postDeliveryHistory(dataToSend);
-      console.log(response); // Faça algo com a resposta, como atualizar a lista de ativos
+      // Dados para o endpoint /addEntrega
+      const entregaData = {
+        id: formDataC1.id,
+        issueDate: formDataC1.issueDate,
+        destination: formDataC1.destination,
+        deliveryDate: formDataC1.deliveryDate,
+      };
 
-      // Fecha o modal após o envio bem-sucedido
+      console.log("entregaa: ", entregaData, "info: ", ativoData);
+      // Chama os serviços
+      const ativoResponse = await addAtivo(ativoData);
+
+      const entregaResponse = await postDeliveryHistory(
+        entregaData,
+        entregaData.id
+      );
+
+      console.log(ativoResponse, entregaResponse); // Trate as respostas conforme necessário
+
       setShowModal(false);
     } catch (error) {
-      console.error("Erro ao enviar o formulário:", error);
-      // Aqui você pode mostrar uma mensagem de erro para o usuário
+      console.error("Erro ao enviar os formulários:", error);
     }
   };
 
@@ -224,7 +167,7 @@ function DashBoard({ props }) {
         fieldsC1={formFieldsC1}
         fieldsC2={formFieldsC2}
         title={"Adicionar Ativo"}
-        onSubmit={handleModalSubmit}
+        onSubmit={handleSubmit}
       />
       <Sidebar />
       <Content>
@@ -233,7 +176,7 @@ function DashBoard({ props }) {
           <DropdownFilter onFilterSelect={handleFilterSelect} />
           <SearchBarContainer>
             <Button
-              text="Adicionar Entrega"
+              text="Adicionar Ativos"
               onClick={() => setShowModal(true)}
             />
             <SearchBar

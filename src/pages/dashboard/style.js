@@ -36,6 +36,12 @@ export const InfoConteiner = styled.div`
   margin-top: 10%;
 `;
 
+export const UpperMap = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+`;
+
 export const ModalForm = styled.div`
   width: 100%;
 `;

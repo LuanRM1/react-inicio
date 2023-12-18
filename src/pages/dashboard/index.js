@@ -8,6 +8,8 @@ import { useParams } from "react-router-dom";
 import { UpdateInfo } from "../../services/put/attInfo";
 import { postDeliveryHistory } from "../../services/post/addEntrega.js";
 import Title from "../../components/title";
+import StatusModal from "../../components/stateModal/index.js";
+import { UpdateStatus } from "../../services/put/attStatus.js";
 import {
   LeftContainer,
   PageContainer,
@@ -15,6 +17,7 @@ import {
   HistConteiner,
   ModalForm,
   InfoConteiner,
+  UpperMap,
 } from "./style.js";
 import ModalComponent from "../../components/modal";
 import Button from "../../components/button";
@@ -26,6 +29,22 @@ const Mapping = () => {
   const [modalTitle, setModalTitle] = useState("");
   const { id } = useParams();
   const [isEntrega, setIsEntrega] = useState(false);
+  const [isStatusModalVisible, setStatusModalVisible] = useState(false);
+  const openStatusModal = () => setStatusModalVisible(true);
+
+  const closeStatusModal = () => setStatusModalVisible(false);
+
+  const handleStatusSubmit = async (statusData) => {
+    try {
+      console.log(statusData);
+      const formData = statusData;
+      const response = await UpdateStatus(id, formData); // Use o 'id' passado para o modal
+      console.log(response); // Faça algo com a resposta, se necessário
+      setShowModal(false);
+    } catch (error) {
+      console.error("Erro ao enviar o status da entrega:", error);
+    }
+  };
 
   const formFields = [
     {
@@ -106,7 +125,7 @@ const Mapping = () => {
   }, [activeFormFields]);
 
   function handleEntregaSubmit(formData) {
-    postDeliveryHistory(id, formData)
+    postDeliveryHistory(formData, id)
       .then((response) =>
         console.log("Entrega adicionada com sucesso:", response)
       )
@@ -124,7 +143,26 @@ const Mapping = () => {
     <PageContainer>
       <Sidebar />
       <LeftContainer>
-        <Title text={"Mapa"} />
+        <Title text={"Dashboard"} />
+        <UpperMap>
+          <SubTitle style={{ fontSize: "12px" }} text={"Mapa"} />
+          <Button
+            text={"Update ent"}
+            onClick={openStatusModal}
+            style={{
+              width: "20%",
+              height: "20px",
+              marginBottom: 0,
+              marginTop: "7px",
+              fontSize: "12px",
+            }}
+          />
+          <StatusModal
+            showModal={isStatusModalVisible}
+            setShowModal={closeStatusModal}
+            onSubmit={handleStatusSubmit}
+          />
+        </UpperMap>
         <Map />
       </LeftContainer>
       <RightContainer>

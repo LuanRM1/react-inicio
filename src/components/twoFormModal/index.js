@@ -6,7 +6,7 @@ import {
   Label,
   CloseButton,
   ModalTitle,
-  FormSection // Supondo que FormSection é um componente de estilo que você precisa criar
+  FormSection, // Supondo que FormSection é um componente de estilo que você precisa criar
 } from "./style";
 import Button from "../button";
 
@@ -62,7 +62,7 @@ const ModalComponent = ({
         <ModalContainer onClick={(e) => e.stopPropagation()}>
           <CloseButton onClick={() => setShowModal(false)}>×</CloseButton>
           {title && <ModalTitle>{title}</ModalTitle>}
-          <div style={{ display: 'flex', justifyContent: 'space-around' }}>
+          <div style={{ display: "flex", justifyContent: "space-around" }}>
             {/* Formulário C1 */}
             <FormSection>
               {fieldsC1.map((field, index) => (
@@ -79,7 +79,7 @@ const ModalComponent = ({
                 </div>
               ))}
             </FormSection>
-            
+
             {/* Formulário C2 */}
             <FormSection>
               {fieldsC2.map((field, index) => (
@@ -105,7 +105,7 @@ const ModalComponent = ({
               backgroundColor: "#008277", // cor de fundo
               color: "#fff",
               height: "40px",
-              marginTop: "20px" // adiciona um pouco de espaço acima do botão
+              marginTop: "20px", // adiciona um pouco de espaço acima do botão
             }}
           />
         </ModalContainer>
