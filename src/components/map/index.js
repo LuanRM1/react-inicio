@@ -4,6 +4,7 @@ import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import icon from "leaflet/dist/images/marker-icon.png";
 import iconShadow from "leaflet/dist/images/marker-shadow.png";
+import redIconUrl from '../../assets/redMarker.png'; // Caminho para o ícone do marcador vermelho
 import { useParams } from "react-router-dom";
 import { fetchPoints } from "../../services/post/entrega";
 import { MainContainer } from "./style.js";
@@ -13,6 +14,14 @@ let DefaultIcon = L.icon({
 });
 
 L.Marker.prototype.options.icon = DefaultIcon;
+let RedIcon = L.icon({
+  iconUrl: redIconUrl,
+  shadowUrl: iconShadow,
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41]
+});
 
 const Map = () => {
   const [points, setPoints] = useState([]);
@@ -32,8 +41,12 @@ const Map = () => {
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 
         {/* Adicione marcadores para cada ponto */}
-        {points.map((point) => (
-          <Marker key={point.id} position={[point.lat, point.long]}>
+        {points.map((point, index) => (
+          <Marker 
+          key={point.id} 
+          position={[point.lat, point.long]}
+          icon={index === points.length - 1 ? RedIcon : DefaultIcon}
+        >
             <Popup>{`ID: ${point.id} - Data: ${point.data}`}</Popup>
           </Marker>
         ))}
