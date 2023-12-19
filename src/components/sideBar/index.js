@@ -1,21 +1,22 @@
 import React from "react";
-import { FiPlus, FiMenu, FiUser } from "react-icons/fi";
+import { useNavigate } from "react-router-dom";
+import { FiUser } from "react-icons/fi";
 import { SidebarContainer, SidebarButton, SidebarIcon } from "./style";
-
+import logosidebar from "../../assets/logosidebar.svg";
 const Sidebar = () => {
+  const navigate = useNavigate();
   return (
     <SidebarContainer>
-      <SidebarButton>
+      <SidebarButton onClick={() => {
+              navigate(`/ativos`);
+            }}>
         <SidebarIcon>
-          <FiMenu />
+        <img src={logosidebar} />
         </SidebarIcon>
       </SidebarButton>
-      <SidebarButton>
-        <SidebarIcon>
-          <FiPlus />
-        </SidebarIcon>
-      </SidebarButton>
-      <SidebarButton>
+      <SidebarButton onClick={() => {
+              navigate(`/`);
+            }}>
         <SidebarIcon>
           <FiUser />
         </SidebarIcon>
