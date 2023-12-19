@@ -178,6 +178,14 @@ function DashBoard({ props }) {
             <Button
               text="Adicionar Ativos"
               onClick={() => setShowModal(true)}
+              style={{
+                width: "10%",
+                height: "20px",
+                marginBottom: 0,
+                marginTop: "7px",
+                marginRight: "10px",
+                fontSize: "12px",
+              }}
             />
             <SearchBar
               value={searchQuery}

@@ -147,10 +147,10 @@ const Mapping = () => {
         <UpperMap>
           <SubTitle style={{ fontSize: "12px" }} text={"Mapa"} />
           <Button
-            text={"Update ent"}
+            text={"update ent"}
             onClick={openStatusModal}
             style={{
-              width: "20%",
+              width: "30%",
               height: "20px",
               marginBottom: 0,
               marginTop: "7px",
